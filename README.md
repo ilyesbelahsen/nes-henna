@@ -21,6 +21,9 @@ npm i
 npm run dev
 ```
 
+For local booking requests, copy `.env.example` to `.env.local` and keep the
+Express API running on `http://localhost:3000`.
+
 ## Built with
 
 - TanStack Start

@@ -1,6 +1,6 @@
 // Isolated booking access layer. Empty VITE_PUBLIC_API_URL => demo mode.
 // Server contract: GET /slots?date=YYYY-MM-DD -> { slots: string[] }
-// POST /book (multipart: nom, prenom, telephone, images, date, creneau, website)
+// POST /book (multipart: nom, prenom, email, telephone, images, date, creneau, website)
 // -> 201 { ok, quand } | 409 slot taken | 400 invalid | 429 too many attempts
 const API_URL =
   (import.meta.env["VITE_PUBLIC_API_URL"] as string | undefined)?.replace(
