@@ -29,6 +29,7 @@ export function BookingScheduleFields({
       <label className="block text-sm font-medium">
         Jour souhaité
         <input
+          id="booking-date"
           type="date"
           min={minDate}
           max={maxDate}

@@ -23,6 +23,7 @@ export function BookingFilesField({
           (5 images max, 10 Mo chacune)
         </span>
         <input
+          id="booking-images"
           type="file"
           accept="image/*"
           multiple

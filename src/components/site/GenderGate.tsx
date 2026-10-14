@@ -60,6 +60,7 @@ export function GenderGate() {
             </p>
             <label className="mt-3 flex min-h-11 items-center gap-3 text-sm">
               <input
+                id="gender-gate-confirmation"
                 type="checkbox"
                 className="h-5 w-5 accent-[var(--primary)]"
                 checked={checked}
