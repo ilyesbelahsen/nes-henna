@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://[À COMPLÉTER].fr/sitemap.xml

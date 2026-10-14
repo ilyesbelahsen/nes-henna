@@ -1,0 +1,107 @@
+@import "tailwindcss" source(none);
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-500-italic.css";
+@import "@fontsource/jost/latin-400.css";
+@import "@fontsource/jost/latin-500.css";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Nas Henna design tokens. Brand: rose #D73463, deep rose #A40C2C, saffron #F2AF4C.
+   Saffron is NEVER used as text on light backgrounds (contrast) — only fills, rules, badges. */
+@theme inline {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-rose: var(--rose);
+  --color-saffron: var(--saffron);
+  --color-success: var(--success);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.978 0.008 60); /* #FBF7F3 */
+  --foreground: oklch(0.23 0.035 20);
+  --card: oklch(0.995 0.004 60);
+  --card-foreground: oklch(0.23 0.035 20);
+  --popover: oklch(0.995 0.004 60);
+  --popover-foreground: oklch(0.23 0.035 20);
+  --primary: oklch(0.47 0.18 22); /* #A40C2C, AA with white */
+  --primary-foreground: oklch(0.99 0.005 60);
+  --rose: oklch(0.58 0.19 5); /* #D73463 large elements only */
+  --saffron: oklch(0.8 0.14 70); /* #F2AF4C fills only */
+  --secondary: oklch(0.94 0.025 50);
+  --secondary-foreground: oklch(0.3 0.08 20);
+  --muted: oklch(0.95 0.012 60);
+  --muted-foreground: oklch(0.45 0.03 30);
+  --accent: oklch(0.93 0.05 10);
+  --accent-foreground: oklch(0.38 0.15 15);
+  --destructive: oklch(0.5 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.45 0.1 160);
+  --border: oklch(0.89 0.02 40);
+  --input: oklch(0.85 0.025 40);
+  --ring: oklch(0.58 0.19 5);
+  --gradient-hero: radial-gradient(120% 80% at 50% 0%, oklch(0.94 0.05 30) 0%, var(--background) 60%);
+  --shadow-soft: 0 10px 30px -12px oklch(0.47 0.18 22 / 0.25);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; }
+  :focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Courtesy photo filter (NOT a technical protection): blurred by default in HTML. */
+.gated-photo { transition: filter 0.4s ease; filter: blur(22px) saturate(0.6); }
+html[data-photos="visible"] .gated-photo { filter: none; }
+
+/* Scroll reveal: opacity/transform only, no layout shift */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+@utility container-site { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: max(1.25rem, env(safe-area-inset-left)); }
+@utility text-display { font-size: clamp(2.5rem, 1.6rem + 4.5vw, 4.75rem); }
+@utility text-section { font-size: clamp(2rem, 1.5rem + 2.5vw, 3.25rem); }
+@utility bg-hero { background: var(--gradient-hero); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
